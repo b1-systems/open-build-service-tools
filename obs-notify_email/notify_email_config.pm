@@ -27,9 +27,7 @@ use warnings;
 
 our $curl_binary = "/usr/bin/curl -f -k";
 
-our $webui_url = "https://localhost";
-
-# url to OBS API: http://api.opensuse.org
+# url to OBS API
 our $api_url = "https://localhost:444";
 
 # user for API
