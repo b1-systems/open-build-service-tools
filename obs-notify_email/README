@@ -1,0 +1,32 @@
+This notification module for open build service sends a simple mail to the
+maintainer of a packet to inform about FAILED buildjobs.
+
+Preparation:
+^^^^^^^^^^^^
+Create attribute namespace and the attribute(s). You can specify an own
+namespace and attribute name, these can be configured in
+notify_email_config.pm:
+
+osc -Ab1 api -X POST -d "<namespace name='B1'> \ <modifiable_by
+user='Admin'/></namespace>" /attribute/B1/_meta
+
+osc api -X POST -d "<definition name='notify' namespace='B1'> \
+<default><value>0</value></default><allowed><value>0</value>\
+<value>1</value></allowed><count>1</count> \ <modifiable_by
+role='maintainer'/></definition>" \ /attribute/B1/notify/_meta
+
+
+Installation:
+^^^^^^^^^^^^^
+copy notify_email.pm and notify_email_config.pm to /usr/lib/obs/server/plugins
+
+also the perl module Mail::Sendmail is required!
+
+Configuration:
+^^^^^^^^^^^^^^
+configure in notify_email_config.pm
+
+
+Restart rep_server and src_server (at least)
+
+
