@@ -7,7 +7,7 @@ Create attribute namespace and the attribute(s). You can specify an own
 namespace and attribute name, these can be configured in
 notify_email_config.pm:
 
-osc -Ab1 api -X POST -d "<namespace name='B1'> \ <modifiable_by
+osc api -X POST -d "<namespace name='B1'> \ <modifiable_by
 user='Admin'/></namespace>" /attribute/B1/_meta
 
 osc api -X POST -d "<definition name='notify' namespace='B1'> \
