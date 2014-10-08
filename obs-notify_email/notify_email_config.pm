@@ -45,4 +45,7 @@ our $notified_roles = "maintainer|bugowner";
 # remember to escape @ => \@
 our $from_mail = "root\@localhost";
 
+# custom mail relay (optional)
+our $smtp_server = undef;
+
 1;
