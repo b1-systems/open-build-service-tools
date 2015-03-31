@@ -91,6 +91,8 @@ sub notify {
     $mail{'message'} .= "Buildlog:        $notify_email_config::api_url/build/$paramRef->{'project'}/$paramRef->{'repository'}/$paramRef->{'arch'}/$paramRef->{'package'}/_log\n";
     $mail{'message'} .= "\n";
 
+    $mail{'smtp'} = $notify_email_config::smtp_server; # for custom mail relay.
+
     if (!sendmail %mail) {
       print STDERR "mail to $to_mail could not be sent using notify_email plugin: $Mail::Sendmail::error\n";
     }
