@@ -100,6 +100,7 @@ sub notify {
 sub notify_setting {
   my ($self, $project) = @_;
   my ($xml, $attributes);
+  my $value = 0;
 
   $xml = $self->call_obs_api("/source/$project/_attribute/$notify_email_config::notify_attr");
 
@@ -107,7 +108,17 @@ sub notify_setting {
     $attributes = XMLin($xml, KeyAttr => { }, ForceArray =>0);
   }
 
-  return $attributes->{attribute}->{'value'} || 0;
+  if (ref($attributes->{'attribute'}) eq 'ARRAY') {
+    for my $attribute (@{ $attributes->{'attribute'} }) {
+      if ($attribute->{'value'}) {
+        $value = $attribute->{'value'};
+      }
+    }
+  } elsif (ref($attributes->{'attribute'}) eq 'HASH') {
+    $value = $attributes->{attribute}->{'value'};
+  }
+
+  return $value;
 }
 
 sub unique {
