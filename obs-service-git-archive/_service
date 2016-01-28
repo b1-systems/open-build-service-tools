@@ -1,7 +1,7 @@
 <!-- example of usage ;) -->
 <services>
   <service name="git-archive">
-    <param name="remote">https://github.com/b1-systems/open-build-service-tools.git</param>
+    <param name="remote">git@git.example.org/b1-systems/open-build-service-tools.git</param>
     <param name="branch">HEAD</param>
     <param name="format">tar.gz</param>
     <param name="file">git-archive</param>
