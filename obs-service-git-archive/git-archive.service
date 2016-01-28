@@ -1,0 +1,42 @@
+<service name="obs-service-git-archive">
+  <summary>Get files/directories from git repository</summary>
+  <description> Use git archive to fetch single files or directories from git repository and saves the archive (if directory) or file directly</description>
+
+  <parameter name="remote">
+    <description>URL of git repository.</description>
+    <required/>
+  </parameter>
+
+  <parameter name="format">
+    <description>archive format (default is tar) </description>
+    <allowedvalue>tar</allowedvalue>
+    <allowedvalue>tar.gz</allowedvalue>
+    <allowedvalue>tgz</allowedvalue>
+    <allowedvalue>zip</allowedvalue>
+    <required/>
+  </parameter>
+
+  <parameter name="branch">
+    <description>branch name (e.g. HEAD) </description>
+    <required/>
+  </parameter>
+
+  <parameter name="directory">
+    <description>path of subdirectory to include, can be used multiple times</description>
+  </parameter>
+
+  <parameter name="file">
+    <description>name of file to extract, can be used multiple times</description>
+  </parameter>
+
+  <parameter name="prefix">
+    <description>Prepend prefix to each filename in the archive</description>
+    <required/>
+  </parameter>
+
+  <parameter name="output">
+    <description>name of output file </description>
+    <required/>
+  </parameter>
+
+</service>

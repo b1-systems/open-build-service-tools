@@ -1,0 +1,47 @@
+#!/usr/bin/perl
+# copyright: B1 Systems GmbH <info@b1-systems.de>, 2016
+# license:   GPLv2+, http://www.gnu.org/licenses/gpl-3.0.html
+# author:    Christian Schneemann <schneemann@b1-systems.de>
+
+use strict;
+use warnings;
+
+my ($remote, $format, $branch, $dir, @dirs, @files, $file, $prefix, $output, $outdir);
+
+$format = "tar";
+$dir = "";
+$file = "";
+$prefix = "";
+
+while (@ARGV) {
+  my $arg = shift @ARGV;
+  if ($arg =~ "remote") {
+    $remote = shift;
+  } elsif ($arg =~ "format") {
+    $format = shift;
+  } elsif ($arg =~ "branch") {
+    $branch = shift;
+  } elsif ($arg =~ "directory") {
+    push(@dirs, shift);
+  } elsif ($arg =~ "file") {
+    push(@files, shift);
+  } elsif ($arg =~ "prefix") {
+    $prefix = shift;
+  } elsif ($arg =~ "outdir") {
+    $outdir = shift;
+  } elsif ($arg =~ "output") {
+    $output = shift;
+    die("invalid parameter for output") if ($output =~ /\//);
+  }
+}
+
+if (scalar @files) {
+  $file = join(" ", @files);
+}
+
+if (scalar @dirs) {
+  $dir = join(" ", @dirs);
+}
+
+`git archive --format $format -o $outdir/$output --remote=$remote --prefix=$prefix $branch:$dir $file`;
+

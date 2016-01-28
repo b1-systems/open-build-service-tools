@@ -1,0 +1,3 @@
+Open Build Service source service for getting an archive from a git repository using git archive.
+Supports getting file(s) or directory(ies) instead of whole repository.
+

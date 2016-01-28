@@ -1,0 +1,23 @@
+<!-- example of usage ;) -->
+<services>
+  <service name="git-archive">
+    <param name="remote">https://github.com/b1-systems/open-build-service-tools.git</param>
+    <param name="branch">HEAD</param>
+    <param name="format">tar.gz</param>
+    <param name="file">git-archive</param>
+    <param name="file">git-archive.service</param>
+    <param name="file">obs-service-git-archive.spec</param>
+    <param name="output">obs-service-git-archive.tar.gz</param>
+  </service>
+  <service name="recompress">
+    <param name="compression">bz2</param>
+    <param name="file">*obs-service-git-archive.tar.gz</param>
+  </service>
+  <service name="extract_file">
+    <param name="archive">*obs-service-git-archive.tar.bz2</param>
+    <param name="files">obs-service-git-archive.spec</param>
+    <param name="files">git-archive</param>
+    <param name="files">git-archive.service</param>
+  </service>
+</services>
+
